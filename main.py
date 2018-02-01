@@ -39,12 +39,14 @@ while True:
     toots += r
 
 rin_count = 0
+rin_max = 0
 
 for toot in toots:
     text = toot["content"]
     c = len(text.split("凛")) + len(text.split("りん")) - 2
     rin_count += c
-text = "%04d/%02d/%02d は %d 回トゥートして、そのうち(凛|りん)は %d 個含まれていました。 #rinsukicounter" % (now.year, now.month, now.day, len(toots), rin_count)
+    rin_max = max([c, rin_max])
+text = "%04d/%02d/%02d は %d 回トゥートして、そのうち(凛|りん)は %d (max=%d) 個含まれていました。 #rinsukicounter" % (now.year, now.month, now.day, len(toots), rin_count, rin_max)
 
 s.post("https://imastodon.net/api/v1/statuses", json = {
     "status": text
