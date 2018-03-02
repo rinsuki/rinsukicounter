@@ -46,7 +46,7 @@ for toot in toots:
     c = len(text.split("凛")) + len(text.split("りん")) - 2
     rin_count += c
     rin_max = max([c, rin_max])
-text = "%04d/%02d/%02d は %d 回トゥートして、そのうち(凛|りん)は %d (max=%d) 個含まれていました(%d%%)。 #rinsukicounter" % (now.year, now.month, now.day, len(toots), rin_count, rin_max, rin_count / len(toots))
+text = "%04d/%02d/%02d は %d 回トゥートして、そのうち(凛|りん)は %d (max=%d) 個含まれていました(%d%%)。 #rinsukicounter" % (now.year, now.month, now.day, len(toots), rin_count, rin_max, (rin_count / len(toots)) * 100)
 
 s.post("https://imastodon.net/api/v1/statuses", json = {
     "status": text
